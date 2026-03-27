@@ -38,11 +38,13 @@ const Login = () => {
     try {
       setIsLoading(true)
       setError('')
-      await login({
+
+      const response = await login({
         email: form.email.trim(),
         password: form.password
       })
       navigate('/app')
+      // window.location.href = 'https://www.google.com';
 
     } catch (error) {
       setError(error.message || '로그인을 실패했습니다.')
@@ -78,6 +80,7 @@ const Login = () => {
                 value={form.email}
                 onChange={handleChange}
                 placeholder="이메일을 입력하세요"
+                autoComplete="username"
               />
               <Input
                 name="password"
@@ -85,6 +88,7 @@ const Login = () => {
                 onChange={handleChange}
                 type="password"
                 placeholder="비밀번호를 입력하세요"
+                autoComplete="current-password"
               />
             </div>
             <div className="auth-btn-wrap">
