@@ -1,32 +1,37 @@
-import React,{createContext,useContext,useMemo,useState} from 'react'
+import React ,{createContext, useContext,useMemo,useState} from 'react'
 
-const AuthCtx = createContext(null)
+
+const AuthCtx =createContext(null)
 
 export function AuthProvider({children}){
-    const[token, setToken] = useState(localStorage.getItem('accessToken'))
+  const [token, setToken]=useState(localStorage.getItem('accessToken'))
 
-    const login = (accessToken) => {
-        localStorage.setItem('accessToken',accessToken)
 
-        setToken(accessToken)
-    }
+  const login =(accessToken)=>{
+    localStorage.setItem('accessToken',accessToken)
+  
+    setToken(accessToken)
+  }
 
-    const logout=()=>{
-        localStorage.removeItem('accessToken')
+  const logout=()=>{
+    localStorage.removeItem("accessToken")
 
-        setToken(null)
-    }
+    setToken(null)
+  }
 
-    const value = useMemo(() => ({
-        token,
-        isAuthed:!!token,
-        login,
-        logout
-    }),[token])
+  const value =useMemo(()=>({
+    token,
+    isAuthed:!!token,
+    login,
+    logout
 
-    return <AuthCtx.Provider value={value}>
-        {children}
-    </AuthCtx.Provider>
+  }),[token])
+
+  return <AuthCtx.Provider value={value}>
+    {children}
+  </AuthCtx.Provider>
+
 }
 
-export const useAuth = () => useContext(AuthCtx)
+
+export const useAuth = ()=>useContext(AuthCtx)

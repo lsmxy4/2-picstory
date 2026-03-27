@@ -40,19 +40,18 @@
             background: linear-gradient(-90deg,
                     $purple,
                     $purple-2 );
-            box-shadow: $shadow;
+            box-shadow: $shadow-intro;
 
         }
     }
-
     &.primary {
         background: linear-gradient(90deg,
-                $purple,
-                $purple-2 );
-        width: 100%;
-        &:hover{
-            transform: translateY(0);
-            box-shadow: $shadow-sm;
-        }
+      $purple,
+      $purple-2 );
+      width: 100%;
+      &:hover {
+        transform: translateY(0);
+        box-shadow: $shadow-sm;
+      }
     }
 }

@@ -3,9 +3,9 @@ package picstory.backend.controller;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import picstory.backend.Service.LoginService;
-import picstory.backend.wep.dto.LoginRequest;
-import picstory.backend.wep.dto.MemberResponse;
+import picstory.backend.service.LoginService;
+import picstory.backend.web.dto.LoginRequest;
+import picstory.backend.web.dto.MemberResponse;
 
 @RestController
 @RequiredArgsConstructor

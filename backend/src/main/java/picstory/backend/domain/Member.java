@@ -13,12 +13,14 @@ import java.time.LocalDateTime;
 @Table(name = "members")
 public class Member {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false,length = 50)
     private String name;
+
 
     @Column(nullable = false,unique = true,length = 100)
     private String email;
@@ -34,34 +36,37 @@ public class Member {
     private MemberStatus status;
 
     @Column(nullable = false)
-    private boolean emailVerified;
+    private  boolean emailVerified;
+
 
     private LocalDateTime createdAt;
-    private LocalDateTime updateAt;
+    private LocalDateTime updatedAt;
 
     @PrePersist
     public void onCreate(){
         this.createdAt = LocalDateTime.now();
-        this.updateAt = this.createdAt;
-        if(this.status == null)this.status = MemberStatus.ACTIVE;
+        this.updatedAt=this.createdAt;
+        if(this.status==null) this.status=MemberStatus.ACTIVE;
     }
-
     @PreUpdate
     public void  onUpdate(){
-        this.updateAt = LocalDateTime.now();
-
+        this.updatedAt=LocalDateTime.now();
     }
 
-    public Member(String name,String email,String passwordHash,String phone){
-        this.name = name;
-        this.email = email;
-        this.passwordHash = passwordHash;
-        this.phone = phone;
-        this.status = MemberStatus.ACTIVE;
-        this.emailVerified = false;
+
+
+
+
+    public Member(String name, String email,String passwordHash, String phone){
+        this.name=name;
+        this.email=email;
+        this.passwordHash=passwordHash;
+        this.phone=phone;
+        this.status=MemberStatus.ACTIVE;
+        this.emailVerified=false;
     }
 
-    public void changeStatus (MemberStatus status){
-        this.status = status;
+    public void changeStatus(MemberStatus status){
+        this.status=status;
     }
 }

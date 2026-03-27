@@ -2,9 +2,9 @@ package picstory.backend.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import picstory.backend.Service.MemberService;
-import picstory.backend.wep.dto.MemberResponse;
-import picstory.backend.wep.dto.SignupRequest;
+import picstory.backend.service.MemberService;
+import picstory.backend.web.dto.MemberResponse;
+import picstory.backend.web.dto.SignupRequest;
 
 import java.util.List;
 
@@ -17,12 +17,13 @@ public class MemberController {
 
     @PostMapping
     public Long signup(@RequestBody SignupRequest request){
-        return memberService.singup(
+        return memberService.signup(
                 request.name(),
                 request.email(),
                 request.password(),
                 request.passwordConfirm(),
-                request.phone());
+                request.phone()
+                );
     }
 
     @GetMapping
