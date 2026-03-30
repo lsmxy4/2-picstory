@@ -1,6 +1,6 @@
 import React from 'react'
 import PostCard from './PostCard'
-import './PostComponentsAll.scss'
+import './PostComponentAll.scss'
 
 const PostList = ({posts}) => {
   return (

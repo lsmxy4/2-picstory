@@ -3,10 +3,15 @@ import Button from '../../components/ui/Button'
 import './Auth.scss'
 import Input from '@/components/ui/Input'
 import { Link, useNavigate } from 'react-router-dom'
-import { login } from '@/api/auth.api'
+import { login as loginApi } from '@/api/auth.api'
+import { useAuth } from '../../store/auth.store'
 const Login = () => {
 
   const navigate = useNavigate()
+
+
+  const { login } = useAuth()
+
   const [form, setForm] = useState({
     email: '',
     password: ''
@@ -38,14 +43,13 @@ const Login = () => {
     try {
       setIsLoading(true)
       setError('')
-
-      const response = await login({
+      const data =await loginApi({
         email: form.email.trim(),
         password: form.password
       })
-      console.log(response)
+
+      login(data)
       navigate('/app')
-      // window.location.href = 'https://www.google.com';
 
     } catch (error) {
       setError(error.message || '로그인을 실패했습니다.')
@@ -81,7 +85,6 @@ const Login = () => {
                 value={form.email}
                 onChange={handleChange}
                 placeholder="이메일을 입력하세요"
-                autoComplete="username"
               />
               <Input
                 name="password"
@@ -89,7 +92,6 @@ const Login = () => {
                 onChange={handleChange}
                 type="password"
                 placeholder="비밀번호를 입력하세요"
-                autoComplete="current-password"
               />
             </div>
             <div className="auth-btn-wrap">
