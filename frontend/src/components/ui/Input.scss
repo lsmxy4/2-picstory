@@ -29,3 +29,15 @@
         }
     }
 }
+.input-post{
+    border-bottom: 1px solid $purple;
+    box-shadow: none;
+    .input-field{
+        caret-color: $purple;
+
+        &::placeholder{
+            color: $gray-200;
+            font-size: $text-xl;
+        }
+    }
+}

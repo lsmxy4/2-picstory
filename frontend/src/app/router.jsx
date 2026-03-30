@@ -5,8 +5,8 @@ import PublicLayout from './PublicLayout'
 import Landing from '../pages/Landing/Landing'
 import Login from '../pages/Auth/Login'
 import Signup from '../pages/Auth/Signup'
-import Dashboard from '../pages/Dashboard/Dashboard'
 import ProtectRoute from '../store/ProtectRoute'
+import PostDashboard from '../pages/posts/PostDashboard'
 export const router = createBrowserRouter([
   {
     element: <PublicLayout />,
@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
     children:[
       {
         index:true,
-        element:<Dashboard/>
+        element:<PostDashboard/>
       }
     ]
   }

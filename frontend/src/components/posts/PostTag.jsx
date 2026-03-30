@@ -1,9 +1,9 @@
 import React from 'react'
 
-const MemoTag = ({tag}) => {
+const PostTag = ({tag}) => {
   return (
     <div>{tag}</div>
   )
 }
 
-export default MemoTag
+export default PostTag

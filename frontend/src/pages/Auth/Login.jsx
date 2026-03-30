@@ -43,6 +43,7 @@ const Login = () => {
         email: form.email.trim(),
         password: form.password
       })
+      console.log(response)
       navigate('/app')
       // window.location.href = 'https://www.google.com';
 
