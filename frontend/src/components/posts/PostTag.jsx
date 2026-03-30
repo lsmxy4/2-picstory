@@ -2,7 +2,10 @@ import React from 'react'
 
 const PostTag = ({tag}) => {
   return (
-    <div>{tag}</div>
+    <div className = 'post-tag'>
+      {tag}
+      <button className = 'post-tag-delete'>X</button>
+      </div>
   )
 }
 
