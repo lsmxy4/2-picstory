@@ -1,11 +1,24 @@
 import React from 'react'
 import Button from '../ui/Button'
+const PostHeader = ({
+  title = '',
+  buttonText = '',
+  onClick,
+  buttonClass = '',
+  showButton = true,
 
-const PostHeader = ({onCreate}) => {
+}) => {
   return (
     <header className='post-header'>
-        <h2 className='post-title'>세 매모를 작성하시오.</h2>
-        <Button text='세 매모 작성' className='primary' onClick={onCreate} icons/>
+        <h2 className='post-title'>{title}</h2>
+
+      {showButton && (
+        <Button
+          text={buttonText}
+          className={buttonClass}
+          onClick={onClick}
+        />
+      )}
     </header>
   )
 }

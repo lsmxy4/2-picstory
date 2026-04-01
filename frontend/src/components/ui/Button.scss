@@ -44,22 +44,32 @@
 
         }
     }
+
     &.primary {
         background: linear-gradient(90deg,
-      $purple,
-      $purple-2 );
-      width: 100%;
-      &:hover {
-        transform: translateY(0);
-        box-shadow: $shadow-sm;
-      }
+                $purple,
+                $purple-2 );
+        width: 100%;
+
+        &:hover {
+            transform: translateY(0);
+            box-shadow: $shadow-sm;
+        }
     }
 
-    &.cancel{
+    &.delete,
+    &.cancel {
         background-color: $error;
     }
 
-    &.save{
+    &.save {
         background-color: $success;
+    }
+
+    &.back.bl {
+        color: $gray-900
+    }
+    &.edit{
+        background-color: $warning;
     }
 }

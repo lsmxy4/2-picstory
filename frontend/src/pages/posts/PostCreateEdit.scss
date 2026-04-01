@@ -13,13 +13,13 @@
             display: flex;
             flex-direction: column;
             gap: $space-md;
-
-
+            
             .input-field {
                 border: 1px solid $gray-200;
                 padding: 0 $space-md;
                 height: 44px;
                 border-radius: $r-sm;
+                color:$gray-800;
 
                 &:focus {
                     border-color: rgba($purple, $alpha: 0.55);
