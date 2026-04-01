@@ -34,6 +34,7 @@ export const router = createBrowserRouter([
       {path:'posts/all',element:<PostAll/>},
       {path:'posts/new',element:<PostCreate/>},
       {path:'posts/:id',element:<PostDetail/>},
+      { path:'posts/:id/edit', element: <PostEdit /> },
       {path:'profile',element:<Profile/>},
       {path:'setting',element:<Setting/>},
     ]
