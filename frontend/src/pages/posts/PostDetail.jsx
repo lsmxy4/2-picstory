@@ -21,6 +21,9 @@ const PostDetail = () => {
         const data = await getPostById(Number(id))
 
         console.log(data)
+        setPost({
+          ...data
+        })
       } catch (error) {
         console.error(error)
       } finally {
@@ -31,22 +34,22 @@ const PostDetail = () => {
   }, [id])
 
   if (loading) return <div>로딩중</div>
-  if (!post) return <div>데이처 없음</div>
+  if (!post) return <div>데이터 없음</div>
 
-  const handlePostDetele = async()=> {
-    if(confirm('게시글을 정말 삭제할건가요?')){
-      try{
+  const handlePostDetele = async () => {
+    if (confirm('게시글을 정말 삭제할건가요?')) {
+      try {
         await deletePost(id)
-        navigate('/app',{replace:true})
-      }catch(error) {
-        console.error('게시글 삭제 오류',error)
+        navigate('/app', { replace: true })
+      } catch (error) {
+        console.error('게시글 삭제 오류', error)
       }
     }
   }
 
 
   return (
-    <section className='page'>
+    <section className='page post-section post-detail'>
       <div className="inner">
         <PostHeader
           title="게시글 보기"
@@ -56,47 +59,45 @@ const PostDetail = () => {
           buttonClass="back bl"
         />
         <div className="post-main">
-          <article className="post-card">
-            
+          <article className='post-card'>
+
+            <div className="post-card-body">
+              <p className="post-card-category">
+                {post.category}
+              </p>
+              <h4 className="post-card-title">
+                {post.title}
+              </h4>
+              <p className="post-card-content">
+                {post.content}
+              </p>
+
+              <div className="tags">
+                <PostTag tag="tag1" />
+                <PostTag tag="tag2" />
+                <PostTag tag="tag3" />
+              </div>
+            </div>
+            <div className="img-wrap">
+              <img src="/images.png" alt="image" />
+            </div>
           </article>
         </div>
-      </div>
-      <div className="post-main">
-          <div className="post-card-body">
-            <p className="post-card-category">
-              {post.category}
-            </p>
-            <h4 className="post-card-title">
-              {post.title}
-            </h4>
-            <p className="post-card-content">
-              {post.content}
-            </p>
+        <div className="btn-wrap">
+          <Button
+            text="게시글 삭제"
+            className="delete bl"
+            onClick={handlePostDetele}
+            icons />
 
-          <div className="tags">
-            <PostTag tag = "tag1"/>
-            <PostTag tag = "tag2"/>
-            <PostTag tag = "tag3"/>
-          </div>
-        </div>
-        <div className="img-wrap">
-          <img src="/images.png" alt="image" />
+          <Button
+            text="게시글 수정"
+            className="edit bl"
+            onClick={() => navigate(`/app/post/${id}/edit`)}
+            icons />
         </div>
       </div>
-      <div className="btn-wrap">
-        <Button
-        text = "게시글 삭제"
-        className = "delete bl"
-        onClick = {handlePostDetele}
-        icons/>
-
-        <Button
-        text = "게시글 수정"
-        className = "edit bl"
-        onClick = {() => navigate(`/app/post/${id}/edit`)}
-        icons/>
-      </div>
-    </section>
+    </section >
   )
 }
 

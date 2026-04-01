@@ -33,7 +33,6 @@
                 
                 .post-card-title{
                     font-size: $text-xl;
-                    margin: $space-md 0;
                 }
                 .post-card-content{
                     min-height: 200px;
@@ -47,7 +46,6 @@
                 }
             }
             .btn-wrap {
-                margin-top: $space-xl;
                 display: flex;
                 justify-content: space-between;
                 gap: $space-md;
