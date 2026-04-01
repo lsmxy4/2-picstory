@@ -93,7 +93,7 @@ const PostDetail = () => {
           <Button
             text="게시글 수정"
             className="edit bl"
-            onClick={() => navigate(`/app/post/${id}/edit`)}
+            onClick={() => navigate(`/app/posts/${id}/edit`)}
             icons />
         </div>
       </div>
