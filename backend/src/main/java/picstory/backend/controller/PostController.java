@@ -3,7 +3,7 @@ package picstory.backend.controller;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import picstory.backend.service.PostService;
+import picstory.backend.Service.PostService;
 import picstory.backend.web.dto.CreatePostRequest;
 import picstory.backend.web.dto.PostResponse;
 import picstory.backend.web.dto.UpdatePostRequest;
@@ -25,6 +25,14 @@ public class PostController {
     @GetMapping
     public List<PostResponse> findAll(HttpSession session) {
         return postService.findMyPosts(session);
+    }
+
+    @GetMapping("/{id}")
+    public PostResponse findById(
+            @PathVariable Long id,
+            HttpSession session
+    ){
+        return  postService.findById(id, session);
     }
 
     @PatchMapping("/{id}")
