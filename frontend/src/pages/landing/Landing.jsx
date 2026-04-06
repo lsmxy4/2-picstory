@@ -1,6 +1,5 @@
 import React from 'react';
 import './Landing.scss';
-// 이미지 파일 이름이 hero.png라고 가정했습니다.
 import heroImg from '../../assets/MainImage.png'; 
 import icon from '@/assets/Bookicon.png'
 
