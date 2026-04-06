@@ -1,3 +1,8 @@
 @use "./styles/variables" as *;
 @use "./styles/mixins" as *;
 @use "./styles/globals";
+@import url('https://cdn.jsdelivr.net/gh/neodunggeunmo/neodunggeunmo@latest/neodunggeunmo.css');
+
+body {
+  font-family: 'NeoDunggeunmo', sans-serif;
+}
