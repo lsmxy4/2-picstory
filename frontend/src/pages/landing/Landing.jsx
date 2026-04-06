@@ -18,7 +18,7 @@ const Landing = () => {
         <div className="content-section">
           <div className="logo-wrapper">
             <div className="logo-title">
-              <img src={icon} className="icon"/> {/* 아이콘이 있다면 img 태그로 교체 */}
+              <img src={icon} className="icon"/>
               <h1>BookTrace</h1>
             </div>
             <p className="description">읽은 책의 흔적을 기록하다</p>
