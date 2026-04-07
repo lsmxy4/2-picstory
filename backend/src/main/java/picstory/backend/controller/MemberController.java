@@ -2,7 +2,7 @@ package picstory.backend.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import picstory.backend.Service.MemberService;
+import picstory.backend.service.MemberService;
 import picstory.backend.web.dto.MemberResponse;
 import picstory.backend.web.dto.SignupRequest;
 

@@ -29,7 +29,7 @@ public class Tag {
     private Member member;
 
     @Column(nullable = false,length = 50)
-    private String lable;
+    private String label;
 
     @ManyToMany(mappedBy = "tags")
     private Set<Post> posts = new HashSet<>();
@@ -53,6 +53,6 @@ public class Tag {
 
     public Tag(Member member,String label){
         this.member = member;
-        this.lable = label;
+        this.label = label;
     }
 }

@@ -3,7 +3,7 @@ package picstory.backend.controller;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import picstory.backend.Service.PostService;
+import picstory.backend.service.PostService;
 import picstory.backend.web.dto.CreatePostRequest;
 import picstory.backend.web.dto.PostResponse;
 import picstory.backend.web.dto.UpdatePostRequest;

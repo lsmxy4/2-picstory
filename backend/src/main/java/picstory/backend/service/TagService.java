@@ -1,8 +1,7 @@
-package picstory.backend.Service;
+package picstory.backend.service;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import picstory.backend.domain.Member;
@@ -112,7 +111,7 @@ public class TagService {
         List<Tag> existingTags = tagRepository.findAllByMember_IdAndLabelIn(memberId,normalized);
 
         Map<String ,Tag> existingByLabel= existingTags.stream()
-                .collect(Collectors.toMap(Tag::getLable,t->t));
+                .collect(Collectors.toMap(Tag::getLabel,t->t));
 
         List<Tag> toCreate = normalized.stream()
                 .filter(label -> !existingByLabel.containsKey(label))

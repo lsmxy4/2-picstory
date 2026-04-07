@@ -79,6 +79,9 @@ const PostDetail = () => {
               </div>
             </div>
             <div className="img-wrap">
+              <img src={post.imageUrl} alt="image" />
+            </div>
+            <div className="img-wrap">
               <img src="/images.png" alt="image" />
             </div>
           </article>

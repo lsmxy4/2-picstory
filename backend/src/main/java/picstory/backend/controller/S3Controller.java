@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import picstory.backend.Service.S3Service;
+import picstory.backend.service.S3Service;
 import picstory.backend.web.dto.PresignedUrlRequest;
 import picstory.backend.web.dto.PresignedUrlResponse;
-
-import java.awt.*;
 
 @RestController
 @RequiredArgsConstructor

@@ -1,4 +1,4 @@
-package picstory.backend.Service;
+package picstory.backend.service;
 
 
 import lombok.RequiredArgsConstructor;

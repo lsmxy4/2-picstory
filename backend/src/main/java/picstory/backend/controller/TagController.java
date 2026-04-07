@@ -3,7 +3,7 @@ package picstory.backend.controller;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import picstory.backend.Service.TagService;
+import picstory.backend.service.TagService;
 import picstory.backend.web.dto.CreateTagRequest;
 import picstory.backend.web.dto.TagResponse;
 

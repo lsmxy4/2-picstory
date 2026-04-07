@@ -9,7 +9,7 @@ public record TagResponse(
     public static TagResponse from(Tag tag){
         return  new TagResponse(
                 tag.getId(),
-                tag.getLable()
+                tag.getLabel()
         );
     }
 }
