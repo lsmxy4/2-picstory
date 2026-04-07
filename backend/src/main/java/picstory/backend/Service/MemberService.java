@@ -1,4 +1,5 @@
-package picstory.backend.service;
+package picstory.backend.Service;
+
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

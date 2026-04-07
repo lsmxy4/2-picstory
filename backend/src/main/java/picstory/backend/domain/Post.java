@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -28,6 +30,9 @@ public class Post {
     @Column(nullable = false, length = 2000)
     private String content;
 
+    @Column(length = 500)
+    private String imageUrl;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "member_id")
     private Member member;
@@ -39,19 +44,37 @@ public class Post {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    public Post(PostCategory category, String title, String content, Member member) {
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "post_tags",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private Set<Tag> tags = new HashSet<>();
+
+    public Post(PostCategory category, String title, String content, String imageUrl, Member member) {
         this.category = category;
         this.title = title;
         this.content = content;
+        this.imageUrl = imageUrl;
         this.member = member;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
 
-    public void update(PostCategory category, String title, String content) {
+    public void update(PostCategory category, String title, String content, String imageUrl) {
         this.category = category;
         this.title = title;
         this.content = content;
+        this.imageUrl = imageUrl;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public void updateTags(Set<Tag> tags){
+        this.tags.clear();
+        if(tags!=null){
+            this.tags.addAll(tags);
+        }
         this.updatedAt = LocalDateTime.now();
     }
 

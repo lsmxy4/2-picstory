@@ -1,4 +1,4 @@
-package picstory.backend.service;
+package picstory.backend.Service;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
