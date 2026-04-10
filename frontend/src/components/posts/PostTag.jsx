@@ -1,16 +1,22 @@
 import React from 'react'
-
-const PostTag = ({tag,onClick}) => {
+import { getTagColor } from '@/hooks/useTagColor'
+const PostTag = ({ tag ,onClick}) => {
   return (
-    <div className = 'post-tag'>
-      {tag}
+    <span className='post-tag'
+    style={{backgroundColor:getTagColor(tag)}}
+    >
+      <span>
+
+        {tag}
+      </span>
       <button 
-      className = 'post-tag-delete' 
-      onClick={(e) => {
+      className='post-tag-delete' 
+      onClick={(e)=>{
         e.preventDefault()
         e.stopPropagation()
-        onClick?.()}}>X</button>
-      </div>
+        onClick?.()
+        }}>X</button>
+    </span>
   )
 }
 

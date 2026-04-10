@@ -6,6 +6,7 @@ import './PostPagesAll.scss'
 import { useNavigate, useParams } from 'react-router-dom'
 import PostHeader from '@/components/posts/PostHeader'
 const PostDetail = () => {
+
   const { id } = useParams()
   const navigate = useNavigate()
   const [post, setPost] = useState(null)
@@ -36,8 +37,8 @@ const PostDetail = () => {
   if (loading) return <div>로딩중</div>
   if (!post) return <div>데이터 없음</div>
 
-  const handlePostDetele = async () => {
-    if (confirm('게시글을 정말 삭제할건가요?')) {
+  const handlePostDelete = async () => {
+    if (confirm('게시글을 정말 삭제하시겠습니까?')) {
       try {
         await deletePost(id)
         navigate('/app', { replace: true })
@@ -73,34 +74,32 @@ const PostDetail = () => {
               </p>
 
               <div className="tags">
-                <PostTag tag="tag1" />
-                <PostTag tag="tag2" />
-                <PostTag tag="tag3" />
+                {(post.tags||[]).map((tag,i)=>(
+
+                <PostTag tag={tag} key={i} />
+                ))}
               </div>
             </div>
             <div className="img-wrap">
               <img src={post.imageUrl} alt="image" />
             </div>
-            <div className="img-wrap">
-              <img src="/images.png" alt="image" />
-            </div>
           </article>
+
         </div>
         <div className="btn-wrap">
           <Button
-            text="게시글 삭제"
+            text="게시글 삭제하기"
             className="delete bl"
-            onClick={handlePostDetele}
+            onClick={handlePostDelete}
             icons />
-
           <Button
-            text="게시글 수정"
+            text="게시글 수정하기"
             className="edit bl"
-            onClick={() => navigate(`/app/posts/${id}/edit`)}
+            onClick={() => { navigate(`/app/posts/${id}/edit`) }}
             icons />
         </div>
       </div>
-    </section >
+    </section>
   )
 }
 
