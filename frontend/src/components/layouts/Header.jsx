@@ -8,7 +8,7 @@ const Header = () => {
 
   const menus = [
     {
-      name: '내 메모',
+      name: '내가 읽었던 책',
       link: '/app/memos'
     },
     {
@@ -36,7 +36,7 @@ const Header = () => {
       <div className="inner">
         <h1>
           <Link to="/app">
-            <img src="/images/logo.svg" alt="logo" />
+            <img src="/images/logo.png" alt="logo" />
           </Link>
         </h1>
         <div className="right">
@@ -54,7 +54,6 @@ const Header = () => {
           </ul>
           <Button
             text="로그아웃"
-            // backico='wh' 
             onClick={handleLogout} />
         </div>
       </div>

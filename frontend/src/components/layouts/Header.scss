@@ -1,5 +1,6 @@
 @use "@/styles/variables" as *;
 header {
+    background-color: #F7FBFA;
     .inner {
         max-width: $container-lg;
         display: flex;
@@ -13,9 +14,11 @@ header {
             display: flex;
             align-items: center;
             
-            ul{
-                
+            ul{ 
                 display: flex;
+                .sq{
+                    color: #1B7C94;
+                }
             }
         }
     }

@@ -1,6 +1,9 @@
 @use "./variables" as *;
 @use "./mixins" as *;
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/NeoDunggeunmo.woff');
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 
 /* Reset-ish */
 * {
@@ -16,7 +19,7 @@ body {
   margin: 0;
   color: $fg;
   background: $bg;
-  font-family: "Montserrat", sans-serif, system-ui, -apple-system, "Pretendard", "Segoe UI", Roboto, Arial;
+  font-family: 'NeoDunggeunmo', sans-serif,"Montserrat", system-ui, -apple-system, "Pretendard", "Segoe UI", Roboto, Arial;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
