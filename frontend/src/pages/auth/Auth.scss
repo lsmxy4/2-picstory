@@ -2,45 +2,89 @@
 
 .auth {
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f7f7;
 
     .inner {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+        width: 100%;
+        max-width: 600px;
+        background: $fg;
+        padding: 60px 40px;
+        box-shadow: 0 10px 30px $shadow;
+        border-radius: 4px;
+        position: relative;
+        text-align: center;
 
-        .auth-box {
-            // flex: 1;
+        h2 {
+            color: #007d8a;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .auth-form, .auth-form-vertical {
             width: 100%;
 
-            nav {
+            .form-group {
                 display: flex;
-                justify-content: space-between;
-                align-items: center;
+                flex-direction: column;
+                gap: 15px;
+                margin-bottom: 32px;
+
+                input {
+                    background: transparent ;
+                    border: none ;
+                    border-bottom: 2px solid #ddd;
+                    border-radius: 0 ;
+                    padding: 12px 5px;
+                    font-size: 1.1rem;
+                    
+                    color: $gray-400 ; 
+
+                    &::placeholder {
+                        color: $gray-400 ;
+                        opacity: 1;
+                    }
+
+                    &:focus {
+                        outline: none;
+                        border-bottom-color: #007d8a;
+                    }
+                }
             }
+
         }
 
-        .auth-form {
-            margin: $space-lg 0;
-            width: 100%;
-
-            .input-group {
-                padding: $space-sm 0;
-            }
-
-            .auth-btn-wrap {
-                margin-top: $space-lg;
-            }
+        .error-text {
+            color: $error;
+            margin-top: 10px;
+            font-size: 0.9rem;
         }
-
+        
         .auth-now {
+            margin-top: 30px;
             display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: flex-end;
-            gap: $space-md;
+            gap: 10px;
+            font-size: 0.9rem;
 
-            span {
-                color: $muted;
+            span{
+                color: #318a99;
+            }
+
+            a { color: #318a99; font-weight: bold; }
+        }
+
+        .back-to-home {
+            margin-top: 20px;
+            text-align: center;
+            button {
+                background: none;
+                color: $gray-400;
+                text-decoration: underline;
             }
         }
     }
