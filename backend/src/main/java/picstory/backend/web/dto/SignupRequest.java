@@ -6,4 +6,4 @@ public record SignupRequest (
         String password,
         String passwordConfirm,
         String phone
-        ){}
+){}

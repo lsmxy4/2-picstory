@@ -23,7 +23,7 @@ public class MemberController {
                 request.password(),
                 request.passwordConfirm(),
                 request.phone()
-                );
+        );
     }
 
     @GetMapping

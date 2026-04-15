@@ -24,10 +24,10 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/members","/members/**").permitAll()
-                        .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/members","/members/**").permitAll()
+                                .requestMatchers("/auth/**").permitAll()
 //                        .anyRequest().authenticated()
-                        .anyRequest().permitAll()
+                                .anyRequest().permitAll()
                 )
                 .formLogin(form->form.disable())
                 .httpBasic(basic -> basic.disable());
@@ -43,7 +43,7 @@ public class SecurityConfig {
 
         config.setAllowedOrigins(List.of(allowedOrigins));
 
-        config.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
+        config.setAllowedMethods(List.of("GET","POST","PUT","PATCH","DELETE","OPTIONS"));
 
         config.setAllowedHeaders(List.of("*"));
 
