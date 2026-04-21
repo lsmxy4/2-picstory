@@ -53,7 +53,7 @@ const PostDetail = () => {
     <section className='page post-section post-detail'>
       <div className="inner">
         <PostHeader
-          title="게시글 보기"
+          title="읽었던 책 보기"
           showButton
           onClick={handleGoBack}
           buttonText="뒤로가기"

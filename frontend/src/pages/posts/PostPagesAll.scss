@@ -71,6 +71,11 @@
 
                 .btn {
                     flex: 1;
+                    background-color: #1B7C94;
+                    &:hover{
+                        color: #1B7C94;
+                        background-color: $fg;
+                    }
                 }
             }
         }

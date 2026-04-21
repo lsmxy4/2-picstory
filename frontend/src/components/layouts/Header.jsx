@@ -9,7 +9,7 @@ const Header = () => {
   const menus = [
     {
       name: '내가 읽었던 책',
-      link: '/app/memos'
+      link: '/app/posts/all'
     },
     {
       name: '내 프로필',

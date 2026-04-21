@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import './PostPagesAll.scss'
 import { getPosts } from '@/api/post.api'
 import { useNavigate } from 'react-router-dom'
-// import useFilteredPosts from '../../hooks/useFilteredPosts'
+import useFilteredPosts from '@/hooks/useFilteredPosts'
 
 const PostAll = () => {
 
