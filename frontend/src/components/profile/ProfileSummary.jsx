@@ -76,7 +76,7 @@ const ProfileSummary = () => {
             <img src={PROFILE_ICONS.calendar} alt="icon" />
             가입일
           </span>
-          <span className='activity-value'>{formatDate(member.createdAt)}</span>
+          <span className='activity-value'>{formatDate(member?.createdAt)}</span>
         </li>
       </ul>
     </div>

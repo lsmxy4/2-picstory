@@ -87,6 +87,16 @@
             display: flex;
             gap: $space-md;
             justify-content: flex-end;
+            .edit{
+                background-color: #1B7C94;
+            }
+            .save{
+                background-color: #1B7C94;
+            }
+            .cancel{
+                color: #1B7C94;
+                border: 1px solid #1B7C94;
+            }
         }
     }
 }

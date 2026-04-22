@@ -6,7 +6,7 @@ const PostCard = ({ post }) => {
         <Link to={`/app/posts/${post.id}`} className='post-card'>
             <article>
                 <div className="post-card-body">
-                    <p className='post-category'>{post.category}</p>
+                    <p className='post-category'>{post.id}번째 읽은 책</p>
                     <h3 className='post-title'>{post.title}</h3>
                     <p className='post-content'>{post.content}</p>
                     <div className="tags">

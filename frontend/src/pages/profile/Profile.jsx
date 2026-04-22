@@ -19,7 +19,7 @@ const Profile = () => {
           title='내 프로필'
           buttonText='뒤로가기'
           showButton
-          buttonClass="back wh"
+          buttonClass="back wh custom-color"
           backico="bh"
           onClick={handleGoBack}
         />

@@ -11,7 +11,7 @@
     border: 1px solid transparent;
     font-size: $btn-font-size;
     font-weight: $btn-font-weight;
-    color: $fg;
+    color: #fff;
     cursor: pointer;
     transition: $ease;
     background: transparent;
@@ -44,14 +44,14 @@
 
         }
     }
+
     &.primary {
-        background: linear-gradient(90deg,
-      $purple,
-      $purple-2 );
-      width: 100%;
-      &:hover {
-        transform: translateY(0);
-        box-shadow: $shadow-sm;
-      }
+        background: #1B7C94;
+        width: 100%;
+
+        &:hover {
+            transform: translateY(0);
+            box-shadow: $shadow-sm;
+        }
     }
 }

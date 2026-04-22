@@ -10,7 +10,7 @@
             align-items: center;
             margin-bottom: $space-lg;
             background-color: $fg;
-    position: relative;
+            position: relative;
 
 
             .post-title {
@@ -57,6 +57,7 @@
 
                 .img-wrap {
                     margin: $space-md 0;
+
                     img {
                         width: 100%;
                     }
@@ -72,7 +73,8 @@
                 .btn {
                     flex: 1;
                     background-color: #1B7C94;
-                    &:hover{
+
+                    &:hover {
                         color: #1B7C94;
                         background-color: $fg;
                     }
@@ -82,6 +84,13 @@
     }
 
     &.post-all {
+        .input-post{
+            input{
+                &::placeholder{
+                    color: #1B7C94;
+                }
+            }
+        }
         .btn-wrap {
             display: flex;
             justify-content: center;

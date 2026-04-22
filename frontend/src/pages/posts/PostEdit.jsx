@@ -4,7 +4,7 @@ import './PostPagesAll.scss'
 import { useNavigate, useParams } from 'react-router-dom'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
-import { CATEGORY_OPTIONS } from '../../constants/category'
+import { CATEGORY_OPTIONS } from '@/constants/category'
 import PostTag from '@/components/posts/PostTag'
 import { getPostById, updatePost } from '@/api/post.api'
 import { uploadImage } from '@/api/file.api'
@@ -180,7 +180,7 @@ const PostEdit = () => {
         title,
         content,
         imageUrl,
-        tags:tags.map((t)=>t.label)
+        tags: tags.map((t) => t.label)
       }
 
       if (confirm('수정하시겠습니까?')) {
@@ -194,8 +194,8 @@ const PostEdit = () => {
     }
   }
 
-  if(isLoading){
-    return(
+  if (isLoading) {
+    return (
       <section className='page post-section post-edit'>
         <div className="inner">
           불러오는 중....
@@ -210,19 +210,8 @@ const PostEdit = () => {
         <form className='post-form' onSubmit={handleUpdate}>
           <div className="post-card">
             <div className="post-field">
-              <label className='post-label'>카테고리</label>
+              <label className='post-label'>수정하기</label>
               <div className="post-input-wrap">
-                <select
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                >
-                  {CATEGORY_OPTIONS.map((opt) => (
-
-                    <option value={opt.value} key={opt.value}>
-                      {opt.label}
-                    </option>
-                  ))}
-                </select>
               </div>
             </div>
             <Input
@@ -232,74 +221,78 @@ const PostEdit = () => {
               onChange={(e) => setTitle(e.target.value)}
               placeholder="제목을 입력하세요"
             />
-            <div className="post-tag-box">
+            <div className="card-grup">
+              <div className="post-upload-card">
+                <div
+                  onClick={() => fileInputRef.current?.click()}
+                  className="post-upload-placeholder">
 
-              <div className="tags">
-                {tags.map((t)=>(
-                  <PostTag tag={t.label} key={t.id} onClick={()=>handleRemoveTag(t)}  />
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={handleUploadImage}
+                    accept='image/*' className='post-uppload-input' />
+                  {imageUrl ? (
 
-                ))}
-                <input 
-                type="text" 
-                value={tagInput}
-                onKeyDown={handleKenEnter}
-                onChange={(e)=>setTagInput(e.target.value)}
-                className='post-tag-input' 
-                placeholder='tag를 자유롭게 입력하세요' />
-                <Button 
-                type="button" 
-                onClick={handleAddTag}
-                text="+ 태그 추가" 
-                className="post-tag-add" />
+                    <img src={imageUrl} alt="preview" className='post-upload-preview' />
+                  ) : (
+                    <img src="/images/add.svg" alt="img" className='post-upload-icon' />
+
+                  )}
+
+                  <p className='post-upload-title'>이미지를 업로드 하세요</p>
+                  <span className="post-upload-desc">
+                    클릭하거나 파일을 드래그 하여 업로드
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className="post-field">
-              <label className='post-label'>내용</label>
-              <div className="post-input-wrap">
-                <textarea
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
+              <div>
+                <div className="post-tag-box">
 
-                  className='post-textarea' placeholder='내용을 자유롭게 입력하세요' />
+                  <div className="tags">
+                    {tags.map((t) => (
+                      <PostTag tag={t.label} key={t.id} onClick={() => handleRemoveTag(t)} />
+
+                    ))}
+                    <input
+                      type="text"
+                      value={tagInput}
+                      onKeyDown={handleKenEnter}
+                      onChange={(e) => setTagInput(e.target.value)}
+                      className='post-tag-input'
+                      placeholder='tag를 자유롭게 입력하세요' />
+                    <Button
+                      type="button"
+                      onClick={handleAddTag}
+                      text="+ 태그 추가"
+                      className="post-tag-add" />
+                  </div>
+                </div>
+                <div className="post-field">
+                  <label className='post-label'>내용</label>
+                  <div className="post-input-wrap">
+                    <textarea
+                      value={content}
+                      onChange={(e) => setContent(e.target.value)}
+
+                      className='post-textarea' placeholder='내용을 자유롭게 입력하세요' />
+                  </div>
+                </div>
+
+                <div className="post-actions">
+                  <Button
+                    type="button"
+                    text="취소하기"
+                    className="cancel"
+                    onClick={handleGoBack}
+                  />
+                  <Button
+                    type="submit"
+                    text="수정하기"
+                    className="save"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="post-upload-card">
-              <div
-                onClick={() => fileInputRef.current?.click()}
-                className="post-upload-placeholder">
-
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handleUploadImage}
-                  accept='image/*' className='post-uppload-input' />
-                {imageUrl ? (
-
-                  <img src={imageUrl} alt="preview" className='post-upload-preview' />
-                ) : (
-                  <img src="/images/add.svg" alt="img" className='post-upload-icon' />
-
-                )}
-
-                <p className='post-upload-title'>이미지를 업로드 하세요</p>
-                <span className="post-upload-desc">
-                  클릭하거나 파일을 드래그 하여 업로드
-                </span>
-              </div>
-            </div>
-
-            <div className="post-actions">
-              <Button
-                type="button"
-                text="취소하기"
-                className="cancel"
-                onClick={handleGoBack}
-              />
-              <Button
-                type="submit"
-                text="수정하기"
-                className="save"
-              />
             </div>
           </div>
         </form>

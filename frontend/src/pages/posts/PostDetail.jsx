@@ -69,19 +69,20 @@ const PostDetail = () => {
               <h4 className="post-card-title">
                 {post.title}
               </h4>
-              <p className="post-card-content">
-                {post.content}
-              </p>
+              <div className="card-grup">
+                <div className="img-wrap">
+                  <img src={post.imageUrl} alt="image" />
+                </div>
+                <p className="post-card-content">
+                  {post.content}
+                </p>
+                <div className="tags">
+                  {(post.tags || []).map((tag, i) => (
 
-              <div className="tags">
-                {(post.tags||[]).map((tag,i)=>(
-
-                <PostTag tag={tag} key={i} />
-                ))}
+                    <PostTag tag={tag} key={i} />
+                  ))}
+                </div>
               </div>
-            </div>
-            <div className="img-wrap">
-              <img src={post.imageUrl} alt="image" />
             </div>
           </article>
 
@@ -99,7 +100,7 @@ const PostDetail = () => {
             icons />
         </div>
       </div>
-    </section>
+    </section >
   )
 }
 

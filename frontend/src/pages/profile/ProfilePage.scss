@@ -5,6 +5,10 @@
     .inner {
         max-width: $container-md;
 
+        .custom-color{
+            color: #1B7C94;
+        }
+
         main {
             display: flex;
             gap: $space-md;

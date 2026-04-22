@@ -100,6 +100,7 @@ const PostAll = () => {
         <div className="input-post">
           <Input
             placeholder="게시글 제목 또는 내용을 검색하세요"
+            className = 'find-book'
             value={searchKeyword}
             onChange={(e) => setSearchKeyword(e.target.value)}
           />
