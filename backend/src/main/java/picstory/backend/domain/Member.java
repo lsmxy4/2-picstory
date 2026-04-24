@@ -53,10 +53,6 @@ public class Member {
         this.updatedAt=LocalDateTime.now();
     }
 
-
-
-
-
     public Member(String name, String email,String passwordHash, String phone){
         this.name=name;
         this.email=email;
@@ -68,5 +64,10 @@ public class Member {
 
     public void changeStatus(MemberStatus status){
         this.status=status;
+    }
+
+    public void updateProfile(String name, String phone){
+        this.name = name;
+        this.phone=phone;
     }
 }
