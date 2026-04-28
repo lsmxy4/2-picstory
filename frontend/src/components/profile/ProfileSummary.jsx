@@ -60,7 +60,7 @@ const ProfileSummary = () => {
         <li>
           <span className='activity-label'>
             <img src={PROFILE_ICONS.memo} alt="icon" />
-            작성 메모
+            읽은 책의 수
           </span>
           <span className='activity-value'>{posts.length}개</span>
         </li>

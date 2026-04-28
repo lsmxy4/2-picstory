@@ -13,7 +13,7 @@
         border-radius: 0;
         background-color: transparent;
         border-bottom: 1px solid $line;
-        color:$fg;
+        color:#1B7C94;
         font-size: $text-sm;
         outline: none;
         transition: $ease;
@@ -23,7 +23,7 @@
             color:$muted;
         }
         &:focus{
-            border-color: $purple;
+            border-color: #1B7C94;
             background: $bg-hover;
             box-shadow:  0 0 0 2px rgba($purple ,.15);
         }

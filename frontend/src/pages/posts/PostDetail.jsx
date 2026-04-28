@@ -64,7 +64,7 @@ const PostDetail = () => {
 
             <div className="post-card-body">
               <p className="post-card-category">
-                {post.category}
+                {post.id}번째 읽은 책
               </p>
               <h4 className="post-card-title">
                 {post.title}
