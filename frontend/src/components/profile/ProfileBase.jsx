@@ -9,7 +9,7 @@ import { PROFILE_ICONS } from '../../constants/profileIcon'
 import { MEMBER_STATUS_LABEL } from '@/constants/memberStatus'
 const ProfileBase = () => {
 
-  const { login: setAuthMember } = useAuth()
+  const { setMember: setAuthMember } = useAuth()
 
   const [member, setMember] = useState(null)
   const [loading, setLoading] = useState(true)
