@@ -14,6 +14,7 @@ import picstory.backend.web.dto.PostResponse;
 import picstory.backend.web.dto.UpdatePostRequest;
 import picstory.backend.web.dto.UpdatePostTagsRequest;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -31,7 +32,7 @@ public class PostService {
         Long memberId = (Long) session.getAttribute(LOGIN_MEMBER_ID);
 
         if (memberId == null) {
-            throw new IllegalArgumentException("로그인 후 이용해 주세요");
+            return Collections.emptyList();
         }
 
         return postRepository.findByMember_IdOrderByCreatedAtDesc(memberId)

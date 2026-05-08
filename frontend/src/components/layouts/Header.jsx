@@ -5,6 +5,7 @@ import Button from '../ui/Button'
 import { logout } from '@/api/auth.api'
 const Header = () => {
   const navigate = useNavigate()
+  const { logout: clearAuth } = useAuth()
 
   const menus = [
     {
@@ -54,8 +55,8 @@ const Header = () => {
           </ul>
           <Button
             text="로그아웃"
-            onClick={handleLogout} 
-            className='logout'/>
+            onClick={handleLogout}
+            className='logout' />
         </div>
       </div>
     </header>
