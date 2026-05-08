@@ -19,7 +19,7 @@
             text-align: center;
             flex-direction: column;
             justify-content: center;
-            background-color: #1B7C94;
+            background-color: $button;
             border-radius: $r-pill;
             color: $fg;
             text-transform: uppercase;
@@ -35,7 +35,7 @@
             color: $gray-400;
         }
         .badge{
-            background-color: #1B7C94;
+            background-color: $button;
             display: inline-block;
             padding: 0 $space-md;
             line-height: 2;

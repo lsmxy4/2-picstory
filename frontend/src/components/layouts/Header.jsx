@@ -2,7 +2,7 @@ import React from 'react'
 import './Header.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '../ui/Button'
-import { logout as logoutApi} from '@/api/auth.api'
+import { logout } from '@/api/auth.api'
 import { useAuth } from '@/store/auth.store'
 const Header = () => {
   const navigate = useNavigate()
@@ -26,9 +26,8 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await logoutApi()
-      logout()
-      setMenuOpen(false)
+      await logout()
+      clearAuth()
       navigate("/")
 
     } catch (error) {

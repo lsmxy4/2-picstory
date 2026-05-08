@@ -106,7 +106,10 @@ const Login = () => {
           <div className="auth-now">
             <span>계정이 없으신가요?</span>
             <Link to="/signup">
-              <Button text="회원가입하기" icons />
+              <Button 
+              text="회원가입하기" 
+              icons 
+              className ='signup'/>
             </Link>
           </div>
         </div>
