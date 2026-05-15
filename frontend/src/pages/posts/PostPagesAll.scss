@@ -12,7 +12,6 @@
             background-color: $fg;
             position: relative;
 
-
             .post-title {
                 font-size: $text-xl;
                 font-weight: $fw-bold;
@@ -28,6 +27,17 @@
                 align-items: flex-start;
                 gap: $space-sm;
             }
+        }
+    }
+
+    .tags-wrapper {
+        .wh {
+            margin-top: 10px;
+            display: inline-flex;
+            background-color: $gray-200;
+            padding: $space-sm $space-md;
+            gap: $space-sm;
+            color: $bg;
         }
     }
 
@@ -84,13 +94,14 @@
     }
 
     &.post-all {
-        .input-post{
-            input{
-                &::placeholder{
+        .input-post {
+            input {
+                &::placeholder {
                     color: #1B7C94;
                 }
             }
         }
+
         .btn-wrap {
             display: flex;
             justify-content: center;
