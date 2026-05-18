@@ -95,6 +95,8 @@ export const logout = async () => {
     return data
 }
 
+const KAKAO_AUTHORIZE_URL = 'https://kauth.kakao.com/oauth/authorize'
+
 export const getKakaoLoginUrl = () => {
     return import.meta.env.VITE_KAKAO_LOGIN_URL ?? `${BASE_URL}/oauth2/authorization/kakao`
 }

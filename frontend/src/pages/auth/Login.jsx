@@ -29,7 +29,7 @@ const Login = () => {
     }))
   }
 
-  const handleSumit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!form.email.trim()) {
       setError('이메일을 입력해주세요')
@@ -83,7 +83,7 @@ const Login = () => {
               className="back"
               onClick={handleBack} />
           </nav>
-          <form className='auth-form' onSubmit={handleSumit}>
+          <form className='auth-form' onSubmit={handleSubmit}>
             <div className="form-group">
 
               <Input

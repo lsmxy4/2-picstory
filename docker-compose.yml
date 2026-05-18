@@ -75,6 +75,9 @@ services:
       CHOKIDAR_USEPOLLING: "true"
       WATCHPACK_POLLING: "true"
       VITE_API_URL: http://localhost:8080
+      VITE_KAKAO_LOGIN_URL: ${VITE_KAKAO_LOGIN_URL:-}
+      VITE_KAKAO_REST_API_KEY: ${VITE_KAKAO_REST_API_KEY:-}
+      VITE_KAKAO_REDIRECT_URI: ${VITE_KAKAO_REDIRECT_URI:-http://localhost:8080/login/oauth2/code/kakao}
     ports:
       - "5173:5173"
     volumes:
