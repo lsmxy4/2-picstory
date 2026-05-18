@@ -1,5 +1,10 @@
 const BASE_URL = import.meta.env.VITE_API_URL ?? ""
 
+const buildApiUrl = (path) => {
+    const normalizedBaseUrl = BASE_URL.replace(/\/$/, '')
+    return `${normalizedBaseUrl}${path}`
+}
+
 export const signup = async (signupData) => {
 
     const response = await fetch(`${BASE_URL}/members`, {
@@ -95,10 +100,30 @@ export const logout = async () => {
     return data
 }
 
-const KAKAO_AUTHORIZE_URL = 'https://kauth.kakao.com/oauth/authorize'
+const KAKAO_LOGIN_PATH = '/api/auth/kakao'
+
+const hasEmptyKakaoOAuthParams = (url) => {
+    try {
+        const parsedUrl = new URL(url, window.location.origin)
+
+        if (parsedUrl.hostname !== 'kauth.kakao.com') {
+            return false
+        }
+
+        return !parsedUrl.searchParams.get('client_id') || !parsedUrl.searchParams.get('redirect_uri')
+    } catch {
+        return false
+    }
+}
 
 export const getKakaoLoginUrl = () => {
-    return import.meta.env.VITE_KAKAO_LOGIN_URL ?? `${BASE_URL}/oauth2/authorization/kakao`
+    const configuredLoginUrl = import.meta.env.VITE_KAKAO_LOGIN_URL?.trim()
+
+    if (configuredLoginUrl && !hasEmptyKakaoOAuthParams(configuredLoginUrl)) {
+        return configuredLoginUrl
+    }
+
+    return buildApiUrl(KAKAO_LOGIN_PATH)
 }
 
 export const redirectToKakaoLogin = () => {

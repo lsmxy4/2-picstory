@@ -8,7 +8,7 @@ const KakaoCallback = () => {
         const token = params.get("token")
 
         if (token === "session") {
-            navigate("/", { replace: true })
+            navigate("/app", { replace: true })
         }else{
             navigate("/login",{replace:true})
         }
