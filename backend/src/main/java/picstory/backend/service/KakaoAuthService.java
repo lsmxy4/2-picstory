@@ -2,12 +2,17 @@ package picstory.backend.service;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestClientResponseException;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 import picstory.backend.config.KakaoProperties;
 import picstory.backend.domain.Member;
@@ -28,6 +33,8 @@ public class KakaoAuthService {
     private static final String LOGIN_MEMBER_ID = "LOGIN_MEMBER_ID";
 
     public String getAuthorizationUrl(){
+        validateKakaoOAuthProperties();
+
         return UriComponentsBuilder
                 .fromUriString("https://kauth.kakao.com/oauth/authorize")
                 .queryParam("client_id", kakaoProperties.getClientId())
@@ -37,13 +44,31 @@ public class KakaoAuthService {
                 .toString();
     }
 
+    private void validateKakaoOAuthProperties() {
+        if (!StringUtils.hasText(kakaoProperties.getClientId())) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Kakao REST API key is missing. Set KAKAO_CLIENT_ID or VITE_KAKAO_REST_API_KEY."
+            );
+        }
+
+        if (!StringUtils.hasText(kakaoProperties.getRedirectUri())) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Kakao redirect URI is missing. Set KAKAO_REDIRECT_URI."
+            );
+        }
+    }
+
     public MemberResponse login(String code, HttpSession session){
+        validateKakaoOAuthProperties();
+
         KakaoTokenResponse token =  requestToken(code);
 
         KakaoUserResponse kakaoUser =requestUserInfo(token.getAccessToken());
 
         Member member = memberRepository.findByKakaoId(kakaoUser.getId())
-                .orElseGet(()->memberRepository.save(createKakaoMember(kakaoUser)));
+                .orElseGet(() -> saveNewKakaoMember(kakaoUser));
         session.setAttribute(LOGIN_MEMBER_ID,member.getId());
 
         return MemberResponse.from(member);
@@ -61,20 +86,75 @@ public class KakaoAuthService {
             body.add("client_secret",kakaoProperties.getClientSecret());
         }
 
-        return  restClient.post()
-                .uri(kakaoProperties.getTokenUri())
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .body(body)
-                .retrieve()
-                .body(KakaoTokenResponse.class);
+        try {
+            KakaoTokenResponse token = restClient.post()
+                    .uri(kakaoProperties.getTokenUri())
+                    .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                    .body(body)
+                    .retrieve()
+                    .body(KakaoTokenResponse.class);
+
+            if (token == null || !StringUtils.hasText(token.getAccessToken())) {
+                throw new ResponseStatusException(
+                        HttpStatus.BAD_GATEWAY,
+                        "Kakao token response did not include an access token."
+                );
+            }
+
+            return token;
+        } catch (RestClientResponseException ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_GATEWAY,
+                    "Kakao token request failed. Check that KAKAO_REDIRECT_URI exactly matches the redirect URI registered in Kakao Developers.",
+                    ex
+            );
+        }
     }
 
     private KakaoUserResponse requestUserInfo(String accessToken){
-        return  restClient.get()
-                .uri(kakaoProperties.getUserInfoUri())
-                .header("Authorization","Bearer "+accessToken)
-                .retrieve()
-                .body(KakaoUserResponse.class);
+        try {
+            KakaoUserResponse kakaoUser = restClient.get()
+                    .uri(kakaoProperties.getUserInfoUri())
+                    .header("Authorization","Bearer "+accessToken)
+                    .retrieve()
+                    .body(KakaoUserResponse.class);
+
+            if (kakaoUser == null || kakaoUser.getId() == null) {
+                throw new ResponseStatusException(
+                        HttpStatus.BAD_GATEWAY,
+                        "Kakao user response did not include an id."
+                );
+            }
+
+            return kakaoUser;
+        } catch (RestClientResponseException ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_GATEWAY,
+                    "Kakao user info request failed.",
+                    ex
+            );
+        }
+    }
+
+    private Member saveNewKakaoMember(KakaoUserResponse kakaoUser) {
+        Member member = createKakaoMember(kakaoUser);
+
+        if (memberRepository.existsByEmail(member.getEmail())) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "A member with this Kakao account email already exists. Please log in with email/password first."
+            );
+        }
+
+        try {
+            return memberRepository.saveAndFlush(member);
+        } catch (DataIntegrityViolationException ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "Kakao account could not be linked because the email or Kakao id already exists.",
+                    ex
+            );
+        }
     }
 
     private Member createKakaoMember(KakaoUserResponse kakaoUser){
@@ -86,7 +166,7 @@ public class KakaoAuthService {
                 email=kakaoUser.getKakaoAccount().getEmail();
             }
             if(kakaoUser.getKakaoAccount().getProfile()!=null
-                    && kakaoUser.getKakaoAccount().getEmail() !=null
+                    && kakaoUser.getKakaoAccount().getProfile().getNickname() !=null
             ){
                 name= kakaoUser.getKakaoAccount().getProfile().getNickname();
             }

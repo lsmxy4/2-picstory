@@ -2,13 +2,25 @@ import React, { useState } from 'react'
 import Button from '@/components/ui/Button'
 import './Auth.scss'
 import Input from '@/components/ui/Input'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom'
 import { login as loginApi, redirectToKakaoLogin } from '@/api/auth.api'
 import { useAuth } from '@/store/auth.store'
+const getKakaoLoginErrorMessage = (message) => {
+  if (message?.includes('KAKAO_REDIRECT_URI')) {
+    return '카카오 로그인 설정이 올바르지 않습니다. 관리자에게 문의해주세요.'
+  }
+
+  if (message?.includes('email already exists')) {
+    return '이미 같은 이메일로 가입된 계정이 있습니다. 이메일 로그인을 이용해주세요.'
+  }
+
+  return '카카오 로그인에 실패했습니다. 잠시 후 다시 시도해주세요.'
+}
+
 const Login = () => {
 
   const navigate = useNavigate()
-
+  const [searchParams] = useSearchParams()
 
   const { login, isReady, isAuthed } = useAuth()
 
@@ -17,7 +29,12 @@ const Login = () => {
     password: ''
   })
 
-  const [error, setError] = useState('')
+  const [error, setError] = useState(() => (
+    searchParams.get('error') === 'kakao_login_failed'
+      ? getKakaoLoginErrorMessage(searchParams.get('message'))
+      : ''
+  ))
+  
   const [isLoading, setIsLoading] = useState(false)
 
   const handleChange = (e) => {

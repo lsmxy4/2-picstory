@@ -4,6 +4,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,8 +33,18 @@ public class KakaoAuthController {
             HttpSession session,
             HttpServletResponse response
     )throws IOException{
-        kakaoAuthService.login(code,session);
-        response.sendRedirect(frontendUrl+"/oauth/kakao/callback?token=session");
+        try {
+            kakaoAuthService.login(code,session);
+            response.sendRedirect(frontendUrl+"/oauth/kakao/callback?token=session");
+        } catch (ResponseStatusException ex) {
+            response.sendRedirect(UriComponentsBuilder
+                    .fromUriString(frontendUrl + "/login")
+                    .queryParam("error", "kakao_login_failed")
+                    .queryParam("message", ex.getReason())
+                    .build()
+                    .encode()
+                    .toUriString());
+        }
     }
 
 }
