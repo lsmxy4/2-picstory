@@ -1,6 +1,7 @@
 import React from 'react'
 import './Input.scss'
 const Input = ({
+  label,
   lable,
   type = "text",
   placeholder,
@@ -14,9 +15,11 @@ const Input = ({
   className = '',
   ...props
 }, ref) => {
+  const inputLabel = label ?? lable
+
   return (
     <div className='input-group'>
-      {lable && <lable className="input-lable">{lable}</lable>}
+      {inputLabel && <label className="input-label">{inputLabel}</label>}
       <div className="input-wrapper">
         {icon && <span className='input-icon'>{icon}</span>}
         <input
@@ -26,10 +29,11 @@ const Input = ({
           value={value}
           placeholder={placeholder}
           onChange={onChange}
+          onBlur={onBlur}
           disabled={disabled}
-          className='input-field'
+          className={`input-field ${className}`.trim()}
           {...props}
-          />
+        />
       </div>
       {error && <p className='input-error'>{error}</p>}
     </div>
