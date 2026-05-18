@@ -94,3 +94,11 @@ export const logout = async () => {
 
     return data
 }
+
+export const getKakaoLoginUrl = () => {
+    return import.meta.env.VITE_KAKAO_LOGIN_URL ?? `${BASE_URL}/oauth2/authorization/kakao`
+}
+
+export const redirectToKakaoLogin = () => {
+    window.location.href = getKakaoLoginUrl()
+}

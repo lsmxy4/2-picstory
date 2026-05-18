@@ -3,7 +3,7 @@ import Button from '@/components/ui/Button'
 import './Auth.scss'
 import Input from '@/components/ui/Input'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { login as loginApi } from '@/api/auth.api'
+import { login as loginApi, redirectToKakaoLogin } from '@/api/auth.api'
 import { useAuth } from '@/store/auth.store'
 const Login = () => {
 
@@ -43,7 +43,7 @@ const Login = () => {
     try {
       setIsLoading(true)
       setError('')
-      const data =await loginApi({
+      const data = await loginApi({
         email: form.email.trim(),
         password: form.password
       })
@@ -58,6 +58,9 @@ const Login = () => {
     }
   }
 
+  const handleKakaoLogin = () => {
+    redirectToKakaoLogin()
+  }
 
   const handleBack = () => {
     navigate(-1)
@@ -99,17 +102,31 @@ const Login = () => {
               />
             </div>
             <div className="auth-btn-wrap">
-              <Button text="로그인" type="submit" className="primary" />
+              <Button
+                text={isLoading ? '로그인 중...' : '로그인'}
+                type="submit"
+                className="primary"
+                disabled={isLoading}
+              />
             </div>
           </form>
+          <div className="auth-divider" aria-hidden="true">
+            <span>또는</span>
+          </div>
+          <Button
+            text="카카오로 로그인"
+            type="button"
+            className="kakao"
+            onClick={handleKakaoLogin}
+          />
           {error && <p className='error-text'> {error}</p>}
           <div className="auth-now">
             <span>계정이 없으신가요?</span>
             <Link to="/signup">
-              <Button 
-              text="회원가입하기" 
-              icons 
-              className ='signup'/>
+              <Button
+                text="회원가입하기"
+                icons
+                className='signup' />
             </Link>
           </div>
         </div>

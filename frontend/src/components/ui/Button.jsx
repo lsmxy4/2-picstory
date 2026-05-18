@@ -2,8 +2,11 @@ import React from 'react'
 import './Button.scss'
 const Button = ({
   text,
-  className,
+  className = '',
   onClick,
+  type = 'button',
+  disabled = false,
+  style,
   backico = '',
   icons }) => {
   
@@ -13,7 +16,13 @@ const Button = ({
 
 
   return (
-    <button onClick={onClick} className={`btn ${className}`}>
+    <button
+      type={type}
+      onClick={onClick}
+      className={`btn ${className}`}
+      disabled={disabled}
+      style={style}
+    >
       {
         backIconSrc && <img src={backIconSrc} />
       }
