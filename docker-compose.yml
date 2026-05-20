@@ -35,7 +35,7 @@ services:
       mysql:
         condition: service_healthy
     env_file:
-    - ./frontend/.env
+      - ./.env
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/${MYSQL_DATABASE:-cruddb}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
       SPRING_DATASOURCE_USERNAME: ${MYSQL_USER:-cruduser}
@@ -46,6 +46,7 @@ services:
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
       AWS_REGION: ${AWS_REGION:-ap-northeast-2}
       AWS_S3_BUCKET: ${AWS_S3_BUCKET:-picstory2}
+      KAKAO_CLIENT_ID: ${KAKAO_CLIENT_ID}
       KAKAO_CLIENT_SECRET: ${KAKAO_CLIENT_SECRET:-}
       KAKAO_REDIRECT_URI: ${KAKAO_REDIRECT_URI:-http://localhost:8080/api/auth/kakao/callback}
       KAKAO_TOKEN_URI: ${KAKAO_TOKEN_URI:-https://kauth.kakao.com/oauth/token}
