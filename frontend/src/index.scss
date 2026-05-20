@@ -1,3 +1,8 @@
 @use "./styles/variables" as *;
 @use "./styles/mixins" as *;
 @use "./styles/globals";
+
+body {
+  font-family: 'NeoDunggeunmo', sans-serif;
+  margin: 0;
+}

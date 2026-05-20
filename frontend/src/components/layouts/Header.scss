@@ -1,0 +1,28 @@
+@use "@/styles/variables" as *;
+header {
+    background-color: #F7FBFA;
+    .inner {
+        max-width: $container-lg;
+        display: flex;
+        justify-content: space-between;
+        padding: $space-lg 0;
+
+        h1 {
+            width: 136px;
+        }
+        .right {
+            display: flex;
+            align-items: center;
+            
+            ul{ 
+                display: flex;
+                .sq{
+                    color: #1B7C94;
+                }
+            }
+            .logout{
+                color: #1B7C94;
+            }
+        }
+    }
+}

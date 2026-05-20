@@ -1,4 +1,4 @@
-package picstory.backend.wep.dto;
+package picstory.backend.web.dto;
 
 import picstory.backend.domain.MemberStatus;
 

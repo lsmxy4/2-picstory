@@ -1,11 +1,11 @@
-package picstory.backend.wep.dto;
+package picstory.backend.web.dto;
 
 import picstory.backend.domain.Member;
 import picstory.backend.domain.MemberStatus;
 
 import java.time.LocalDateTime;
 
-public record MemberResponse(
+public record MemberResponse (
         Long id,
         String name,
         String email,
@@ -13,7 +13,7 @@ public record MemberResponse(
         MemberStatus status,
         boolean emailVerified,
         LocalDateTime createdAt
-){
+) {
     public static MemberResponse from(Member m){
         return new MemberResponse(
                 m.getId(),

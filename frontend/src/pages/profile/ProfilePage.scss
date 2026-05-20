@@ -1,0 +1,28 @@
+@use "@/styles/variables" as *;
+
+
+.profile-section {
+    .inner {
+        max-width: $container-md;
+
+        .custom-color{
+            color: #1B7C94;
+        }
+
+        main {
+            display: flex;
+            gap: $space-md;
+
+            .left {
+                min-width: $container-xs;
+                display: flex;
+                flex-direction: column;
+                gap: $space-md;
+            }
+
+            @media screen and (max-width:$container-lg) {
+                flex-direction: column;
+            }
+        }
+    }
+}

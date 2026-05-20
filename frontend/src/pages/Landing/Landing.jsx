@@ -1,32 +1,35 @@
-import React from 'react'
-import './Landing.scss'
-import Button from '@/components/ui/Button'
-import { NavLink } from 'react-router-dom'
-const bgImages = [
-    './images/landing-sl-1.png',
-    './images/landing-sl-2.png'
-]
+import React from 'react';
+import './Landing.scss';
+import heroImg from '../../assets/MainImage.png'; 
+import icon from '@/assets/Bookicon.png'
 
 const Landing = () => {
   return (
-    <section className='landing'>
-        <div className="inner">
-            <div className="t-wrap">
-                <img src="/images/landing-img.png" alt="img" />
-                <h2>
-                    <img src="/images/logo.svg" alt="logo" />
-                </h2>
-                <p>
-                    사진한장. 한줄 메모. 검색. 공유까지.
-                    PicStory
-                </p>
-            </div>
-            <NavLink>
-                <Button text = '시작하기' className = 'intro' icons = {true}/>
-            </NavLink>
+    <div className="landing-page">
+      <div className="landing-container">
+        {/* 왼쪽: 오리 캐릭터가 들어있는 책 이미지 영역 */}
+        <div className="image-section">
+          <img 
+          src={heroImg} alt="BookTrace Hero" />
         </div>
-    </section>
-  )
-}
 
-export default Landing
+        {/* 오른쪽: 로고와 시작하기 버튼 영역 */}
+        <div className="content-section">
+          <div className="logo-wrapper">
+            <div className="logo-title">
+              <img src={icon} className="icon"/>
+              <h1>BookTrace</h1>
+            </div>
+            <p className="description">읽은 책의 흔적을 기록하다</p>
+          </div>
+          
+          <button className="start-button" onClick={() => window.location.href='/login'}>
+            시작하기
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Landing;

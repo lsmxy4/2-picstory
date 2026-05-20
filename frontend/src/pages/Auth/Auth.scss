@@ -1,0 +1,156 @@
+@use "@/styles/variables" as *;
+
+.auth {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f7f7;
+
+    .inner {
+        width: 100%;
+        max-width: 600px;
+        background: $fg;
+        padding: 60px 40px;
+        box-shadow: 0 10px 30px $shadow;
+        border-radius: 4px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        .auth-box {
+            width: 100%;
+        }
+
+        h2 {
+            color: #007d8a;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .back {
+            color: $button;
+
+            img {
+                background-color: $back;
+                border-radius: 999px;
+            }
+        }
+
+        .auth-form,
+        .auth-form-vertical {
+            width: 100%;
+
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                margin-bottom: 32px;
+
+                input {
+                    background: transparent;
+                    border: none;
+                    border-bottom: 2px solid #ddd;
+                    border-radius: 0;
+                    padding: 12px 5px;
+                    font-size: 1.1rem;
+
+                    color: $gray-400 ;
+
+                    &::placeholder {
+                        color: $gray-400 ;
+                        opacity: 1;
+                    }
+
+                    &:focus {
+                        outline: none;
+                        border-bottom-color: #007d8a;
+                    }
+                }
+            }
+
+        }
+
+        .auth-divider {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 22px 0;
+            color: $gray-400;
+            font-size: 0.9rem;
+
+            &::before,
+            &::after {
+                content: '';
+                flex: 1;
+                height: 1px;
+                background: #ddd;
+            }
+        }
+
+        .kakao {
+            width: 100%;
+            background: #fee500;
+            color: #191919;
+
+            &::before {
+                content: '';
+                width: 18px;
+                height: 18px;
+                border-radius: 50%;
+                background: #191919;
+                opacity: 0.9;
+            }
+
+            &:hover {
+                transform: translateY(0);
+                box-shadow: $shadow-sm;
+                background: #fada0a;
+            }
+        }
+
+        .error-text {
+            color: $error;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .auth-now {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+
+            span {
+                color: #318a99;
+            }
+
+            a {
+                color: #318a99;
+                font-weight: bold;
+            }
+
+            .signup {
+                color: $button;
+            }
+        }
+
+        .back-to-home {
+            margin-top: 20px;
+            text-align: center;
+
+            button {
+                background: none;
+                color: $gray-400;
+                text-decoration: underline;
+            }
+        }
+    }
+}

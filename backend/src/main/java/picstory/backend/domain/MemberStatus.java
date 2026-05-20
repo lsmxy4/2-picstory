@@ -1,5 +1,5 @@
 package picstory.backend.domain;
 
 public enum MemberStatus {
-    ACTIVE, SUSPENDED, DELETED
+        ACTIVE, SUSPENDED, DELETED
 }
